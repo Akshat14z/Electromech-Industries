@@ -1,14 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "./loader";
 import "./index.css";
 import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const logoPath = useMemo(() => {
-    const base = import.meta.env.BASE_URL || "/";
-    return `${base}final.png`;
-  }, []);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -92,8 +89,6 @@ function App() {
     };
   }, [loading]);
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     e.stopPropagation();
@@ -129,7 +124,7 @@ function App() {
       <header className="navbar">
         <div className="nav-left">
           <div className="nav-logo">
-            <img src={logoPath} alt="Electromech Industries" className="nav-logo-img" />
+            <img src="final.png" alt="Electromech Industries" className="nav-logo-img" />
             <span>Electromech Industries</span>
           </div>
           <nav className="nav-links">
