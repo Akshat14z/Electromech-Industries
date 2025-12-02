@@ -546,7 +546,7 @@ body {
 }
 
 .section h2 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2.5rem, 5vw, 3rem);
   margin-bottom: 24px;
   color: #F4F6F6;
   font-weight: 700;
