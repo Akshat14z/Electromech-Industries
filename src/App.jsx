@@ -89,30 +89,40 @@ function App() {
     };
   }, [loading]);
 
-  const handleNavClick = (e, targetId) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    const targetElement = document.getElementById(targetId);
-    
-    if (!targetElement) {
-      console.warn(`Element with id "${targetId}" not found`);
-      return;
-    }
-    
-    // Close mobile menu if open
-    setMobileMenuOpen(false);
-    
-    const navbarHeight = 70;
-    const elementTop = targetElement.getBoundingClientRect().top;
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    const targetPosition = elementTop + currentScroll - navbarHeight;
-    
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth'
-    });
-  };
+  // Document-level delegated handler for nav anchor clicks (survives react re-renders)
+  useEffect(() => {
+    if (loading) return;
+
+    const handler = (e) => {
+      const el = e.target;
+      const anchor = el.closest('a');
+      if (!anchor) return;
+
+      // only handle anchors inside our nav areas
+      const inNav = anchor.closest('.nav-links') || anchor.closest('.nav-mobile-menu');
+      if (!inNav) return;
+
+      const href = anchor.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+
+      const id = href.slice(1);
+      const targetElement = document.getElementById(id);
+      if (!targetElement) return;
+
+      e.preventDefault();
+      setMobileMenuOpen(false);
+
+      const navbarEl = document.querySelector('.navbar');
+      const navbarHeight = navbarEl ? navbarEl.offsetHeight : 70;
+      const rect = targetElement.getBoundingClientRect();
+      const top = rect.top + window.pageYOffset - navbarHeight - 6;
+
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    };
+
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
+  }, [loading]);
 
   if (loading) {
     return <Loader />;
@@ -128,13 +138,13 @@ function App() {
             <span>Electromech Industries</span>
           </div>
           <nav className="nav-links">
-            <a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About Us</a>
-            <a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Services</a>
-            <a href="#facilities" onClick={(e) => handleNavClick(e, 'facilities')}>Facilities</a>
-            <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')}>Projects</a>
-            <a href="#clients" onClick={(e) => handleNavClick(e, 'clients')}>Clients</a>
-            <a href="#quality" onClick={(e) => handleNavClick(e, 'quality')}>Quality</a>
-            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a>
+            <a href="#about">About Us</a>
+            <a href="#services">Services</a>
+            <a href="#facilities">Facilities</a>
+            <a href="#projects">Projects</a>
+            <a href="#clients">Clients</a>
+            <a href="#quality">Quality</a>
+            <a href="#contact">Contact</a>
           </nav>
         </div>
         <div className="nav-right">
@@ -150,13 +160,13 @@ function App() {
 
       {/* MOBILE MENU */}
       <nav className={`nav-mobile-menu ${mobileMenuOpen ? 'active' : ''}`}>
-        <a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About Us</a>
-        <a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Services</a>
-        <a href="#facilities" onClick={(e) => handleNavClick(e, 'facilities')}>Facilities</a>
-        <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')}>Projects</a>
-        <a href="#clients" onClick={(e) => handleNavClick(e, 'clients')}>Clients</a>
-        <a href="#quality" onClick={(e) => handleNavClick(e, 'quality')}>Quality</a>
-        <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#projects">Projects</a>
+        <a href="#clients">Clients</a>
+        <a href="#quality">Quality</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <main>
@@ -492,8 +502,10 @@ function App() {
                 We sincerely hope that you will find our particulars to your requirements and give us 
                 a chance to serve with you & prove our working abilities to the best.</p>
                 <p className="contact-note">
-                  <strong>Authorized Service Center for Kishor Pumps</strong><br></br>
-                 
+                  <strong>Authorized Service Center for Kishor Pumps</strong>
+                  <img src="public/kishor.jpg" alt="Kishor Pumps" className="kishor-badge" />
+                  <br />
+
                   <strong>Authorized Service Center for LUBI Pumps</strong>
                 </p>
               </div>
