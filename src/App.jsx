@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Loader from "./loader";
 import "./index.css";
 import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const logoPath = useMemo(() => {
+    const base = import.meta.env.BASE_URL || "/";
+    return `${base}final.png`;
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,6 +41,34 @@ function App() {
     };
   }, [loading]);
 
+  // Close mobile menu when clicking outside or scrolling
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleClickOutside = (e) => {
+      const mobileMenu = document.querySelector('.nav-mobile-menu');
+      const toggleButton = document.querySelector('.nav-mobile-toggle');
+      
+      if (mobileMenu && toggleButton && 
+          !mobileMenu.contains(e.target) && 
+          !toggleButton.contains(e.target)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    const handleScroll = () => {
+      setMobileMenuOpen(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [mobileMenuOpen]);
+
   useEffect(() => {
     if (loading) return;
 
@@ -60,6 +92,8 @@ function App() {
     };
   }, [loading]);
 
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     e.stopPropagation();
@@ -70,6 +104,9 @@ function App() {
       console.warn(`Element with id "${targetId}" not found`);
       return;
     }
+    
+    // Close mobile menu if open
+    setMobileMenuOpen(false);
     
     const navbarHeight = 70;
     const elementTop = targetElement.getBoundingClientRect().top;
@@ -92,7 +129,7 @@ function App() {
       <header className="navbar">
         <div className="nav-left">
           <div className="nav-logo">
-            <img src="/final.png" alt="Electromech Industries" className="nav-logo-img" />
+            <img src={logoPath} alt="Electromech Industries" className="nav-logo-img" />
             <span>Electromech Industries</span>
           </div>
           <nav className="nav-links">
@@ -106,36 +143,56 @@ function App() {
           </nav>
         </div>
         <div className="nav-right">
+          <button 
+            className="nav-mobile-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? '✕' : '☰'}
+          </button>
         </div>
       </header>
+
+      {/* MOBILE MENU */}
+      <nav className={`nav-mobile-menu ${mobileMenuOpen ? 'active' : ''}`}>
+        <a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About Us</a>
+        <a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Services</a>
+        <a href="#facilities" onClick={(e) => handleNavClick(e, 'facilities')}>Facilities</a>
+        <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')}>Projects</a>
+        <a href="#clients" onClick={(e) => handleNavClick(e, 'clients')}>Clients</a>
+        <a href="#quality" onClick={(e) => handleNavClick(e, 'quality')}>Quality</a>
+        <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a>
+      </nav>
 
       <main>
         {/* HERO SECTION */}
         <section id="hero" className="hero section visible">
           <div className="hero-inner">
-            {/* LEFT SIDE – TEXT */}
-            <div className="hero-left">
-              <div className="hero-badge">
-                <span className="hero-badge-dot" />
-                <span>Since 2014</span>
+            {/* TOP-LEFT: Electromech Industries */}
+            <div className="hero-company hero-company-top-left">
+              <div className="hero-company-card">
+                <h2 className="hero-company-name">Electromech Industries</h2>
+                <p className="hero-company-since">Since 2014</p>
+                <p className="hero-company-desc">Authorized Service Center for Kishor Pumps</p>
+                <div className="hero-company-divider"></div>
               </div>
-
-              <h1 className="hero-title">
-                <span>ELECTROMECH</span>
-                <span className="hero-title-gradient">INDUSTRIES</span>
-              </h1>
-
-              <p className="hero-subtitle">
-                Authorized Service Center for Kishor Pumps
-              </p>
-
-              <p className="hero-tagline">
-                Trusted name for Excellence, Honesty and Performance
-              </p>
             </div>
 
-            {/* RIGHT SIDE – TEXT */}
-            <div className="hero-right">
+            {/* BOTTOM-RIGHT: Ganesh Electricals */}
+            <div className="hero-company hero-company-bottom-right">
+              <div className="hero-company-card">
+                <h2 className="hero-company-name">Ganesh Electricals</h2>
+                <p className="hero-company-since">Since 1977</p>
+                <p className="hero-company-desc">Efficient Repair and High Performance Services</p>
+                <div className="hero-company-divider"></div>
+              </div>
+            </div>
+
+            {/* CENTER CONTENT */}
+            <div className="hero-center">
+              <p className="hero-tagline-main">
+                Trusted name for Excellence, Honesty and Performance
+              </p>
               <p className="hero-description">
                 We render our service to many esteemed organizations, both large and medium industries. 
                 Our electrical workshop has been serving since 1977 with many years of wide experience 
@@ -440,7 +497,9 @@ function App() {
                 We sincerely hope that you will find our particulars to your requirements and give us 
                 a chance to serve with you & prove our working abilities to the best.</p>
                 <p className="contact-note">
-                  <strong>Authorized Service Center for Kishor Pumps</strong>
+                  <strong>Authorized Service Center for Kishor Pumps</strong><br></br>
+                 
+                  <strong>Authorized Service Center for LUBI Pumps</strong>
                 </p>
               </div>
             </div>
