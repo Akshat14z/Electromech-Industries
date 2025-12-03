@@ -118,10 +118,16 @@ function App() {
     <div className="page">
       {/* NAVBAR */}
       <header className="navbar">
-        <div className="nav-left">
+          <div className="nav-left">
           <div className="nav-logo">
-            <img src="final.png" alt="Electromech Industries" className="nav-logo-img" />
-            <span>Electromech Industries</span>
+            <div className="brand-item">
+              <img src="final.png" alt="Electromech Industries" className="nav-logo-img" />
+              <span className="brand-name">Electromech Industries</span>
+            </div>
+            <div className="brand-item brand-item--small">
+              <img src="ge.jpg" alt="Ganesh Electricals" className="nav-logo-img nav-logo-img--small" />
+              <span className="brand-name">Ganesh Electricals</span>
+            </div>
           </div>
           <nav className="nav-links">
             <a href="#about">About Us</a>
@@ -182,12 +188,15 @@ function App() {
                 <h2 className="hero-company-name">Electromech Industries</h2>
                 <p className="hero-company-since">Since 2014</p>
                 <p className="hero-company-desc">Authorized Service Center for Kishor Pumps</p>
+                <p className="hero-company-desc">Authorized Service Center for LUBI Pumps</p>
                 <div className="hero-company-divider"></div>
               </div>
             </div>
 
             {/* BOTTOM-RIGHT: Ganesh Electricals */}
             <div className="hero-company hero-company-bottom-right">
+            {/* Service information card moved here from Contact */}
+           
               <div className="hero-company-card">
                 <h2 className="hero-company-name">Ganesh Electricals</h2>
                 <p className="hero-company-since">Since 1977</p>
@@ -223,28 +232,38 @@ function App() {
           <div className="content">
             <h2>About Us</h2>
             <div className="about-grid">
-              <div className="about-card">
-                <h3>Ganesh Electricals</h3>
-                <p className="about-year">Since 1977</p>
-                <p className="about-slogan">Efficient Repair and High Performance Services</p>
-                <div className="about-details">
-                  <p><strong>GSTIN:</strong> 24AD0PP2090GIZG</p>
-                  <p><strong>MSME:</strong> UDYAM-GJ-24-0020541</p>
-                </div>
-              </div>
-              <div className="about-card">
-                <h3>Electromech Industries</h3>
-                <p className="about-year">Since 2014</p>
-                <p className="about-slogan">Authorized Service Center for Kishor Pumps</p>
-                <div className="about-details">
-                  <p><strong>GSTIN:</strong> 24APLPP9376GIZB</p>
-                  <p><strong>MSME:</strong> UDYAM-GJ-24-0020572</p>
-                </div>
-                <p className="about-note">
+              
+            <p className="about-note">
                   Electromech Industries provides service contracts of electrical machines and 
                   manufactures all types of MCC, PCC, and AMF panels as well as synchronized 
                   AMF panels of any capacity of DG.
                 </p>
+              <div className="about-card">
+                <div className="about-card-inner">
+                  <img src="ge.jpg" alt="Ganesh Electricals" className="about-logo" />
+                  <div>
+                    <h3>Ganesh <br />Electricals</h3>
+                    <p className="about-year">Since 1977</p>
+                    <div className="about-details">
+                      <p><strong>GSTIN:</strong> 24AD0PP2090GIZG</p>
+                      <p><strong>MSME:</strong> UDYAM-GJ-24-0020541</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="about-card">
+                <div className="about-card-inner">
+                  <img src="final.png" alt="Electromech Industries" className="about-logo" />
+                  <div>
+                    <h3>Electromech Industries</h3>
+                    <p className="about-year">Since 2014</p>
+
+                    <div className="about-details">
+                      <p><strong>GSTIN:</strong> 24APLPP9376GIZB</p>
+                      <p><strong>MSME:</strong> UDYAM-GJ-24-0020572</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -255,7 +274,21 @@ function App() {
           <div className="content">
             <h2>Our Services</h2>
             <p className="section-intro">We repair and serve following types of Electrical Machines</p>
+             <div className="contact-card" style={{marginTop: '28px'}}>
+              <h3>Service Information</h3>
+              <p className="contact-note">
+                <span className="service-line">
+                  <strong>Authorized Service Center for Kishor Pumps</strong>
+                  <img src="kishor.jpg" alt="Kishor Pumps" className="kishor-badge" />
+                </span>
+                <span className="service-line">
+                  <strong>Authorized Service Center for LUBI Pumps</strong>
+                  <img src="lubi.jpg" alt="LUBI Pumps" className="kishor-badge" />
+                </span>
+              </p>
+            </div>  
             <div className="services-grid">
+              
               <div className="service-item">All types of AC/DC Motors</div>
               <div className="service-item">All types of Alternators / Generators</div>
               <div className="service-item">AC/DC Traction, Fork-lift motors. All Starters</div>
@@ -498,22 +531,7 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="contact-card">
-                <h3>Service Information</h3>
-                <p>We have experienced and skilled workforce for providing efficient and prompt services. 
-                We sincerely hope that you will find our particulars to your requirements and give us 
-                a chance to serve with you & prove our working abilities to the best.</p>
-                <p className="contact-note">
-                  <span className="service-line">
-                    <strong>Authorized Service Center for Kishor Pumps</strong>
-                    <img src="kishor.jpg" alt="Kishor Pumps" className="kishor-badge" />
-                  </span>
-                  <span className="service-line">
-                    <strong>Authorized Service Center for LUBI Pumps</strong>
-                    <img src="lubi.jpg" alt="LUBI Pumps" className="kishor-badge" />
-                  </span>
-                </p>
-              </div>
+              {/* Service information moved to Services section above */}
             </div>
           </div>
         </section>
@@ -522,38 +540,6 @@ function App() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="footer-content">
-          <div className="footer-section">
-            <h3>Ganesh Electricals</h3>
-            <p>Since 1977</p>
-            <p>Repairer and Rewinders</p>
-            <p className="footer-tagline">Efficient Repair and High Performance Services</p>
-            <div className="footer-details">
-              <p>GSTIN: 24AD0PP2090GIZG</p>
-              <p>MSME: UDYAM-GJ-24-0020541</p>
-            </div>
-          </div>
-          <div className="footer-section">
-            <h3>Electromech Industries</h3>
-            <p>Since 2014</p>
-            <p>Authorized Service Center for Kishor Pumps</p>
-            <div className="footer-details">
-              <p>GSTIN: 24APLPP9376GIZB</p>
-              <p>MSME: UDYAM-GJ-24-0020572</p>
-            </div>
-          </div>
-          <div className="footer-section">
-            <h3>Contact</h3>
-            <p>Mehul Patel: 98 244 38936</p>
-            <p>Manubhai Patel: 98 244 38957</p>
-            <p>ganeshelectricals@hotmail.com</p>
-            <p>electromech.vadodara@gmail.com</p>
-          </div>
-          <div className="footer-section">
-            <h3>Address</h3>
-            <p>Ranmuteshwar road, Nr. Dutt Temple,</p>
-            <p>Pratapnagar, Vadodara-390004,</p>
-            <p>Gujarat, India</p>
-          </div>
         </div>
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Ganesh Electricals & Electromech Industries. All rights reserved.</p>

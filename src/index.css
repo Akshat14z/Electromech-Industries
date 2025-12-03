@@ -96,6 +96,36 @@ body {
   border-radius: 4px;
 }
 
+/* Brand item inside navbar to hold small logo + name */
+.brand-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-item--small .nav-logo-img--small {
+  width: 34px;
+  height: 34px;
+}
+
+.brand-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+@media (max-width: 820px) {
+  .brand-name { display: none; }
+  .nav-logo-img { width: 36px; height: 36px; }
+}
+
+/* When screen is very narrow, keep navbar compact by stacking brands small */
+@media (max-width: 520px) {
+  .nav-logo { gap: 4px; }
+  .brand-item { gap: 8px; }
+  .brand-name { font-size: 0.85rem; }
+}
+
 .nav-logo-icon {
   font-size: 1.4rem;
   font-weight: 400;
@@ -406,9 +436,9 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #FF8C00;
+  background: #abff00;
   display: inline-block;
-  box-shadow: 0 0 8px rgba(255, 140, 0, 0.8);
+  box-shadow: 0 0 8px rgba(171, 255, 0, 0.8);
 }
 
 .hero-company-desc {
@@ -828,11 +858,25 @@ body {
 /* ABOUT SECTION */
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* pack cards into columns up to 360px and center them when there's extra space */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+  justify-content: center;
+  justify-items: center;
+  align-items: start;
   gap: 32px;
   margin-top: 40px;
   text-align: left;
   width: 100%;
+}
+
+/* Ensure any standalone about-note inside the grid spans full width
+   so the paragraph appears below the H2 and above the two cards. */
+.about-grid > .about-note {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin: 0 auto 18px auto;
+  max-width: 900px;
+  padding: 0 12px;
 }
 
 .about-card {
@@ -843,6 +887,41 @@ body {
   backdrop-filter: blur(10px);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 140, 0, 0.1);
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* About card inner layout: image beside content on wide screens, stacked on small screens */
+.about-card-inner {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.about-logo {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.02);
+}
+
+@media (max-width: 760px) {
+  .about-card-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .about-logo {
+    width: 84px;
+    height: 84px;
+  }
+  .about-card h3 {
+    margin-top: 6px;
+  }
 }
 
 .about-card:hover {
@@ -1601,5 +1680,62 @@ body {
 .section::before {
   pointer-events: none !important;
   z-index: 0;
+}
+
+
+/* FOOTER STYLES */
+.footer {
+  background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(6,6,6,1) 100%);
+  border-top: 1px solid rgba(255,140,0,0.08);
+  color: #DADADA;
+  padding: 24px 16px 36px;
+}
+
+.footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto 12px auto;
+  padding: 0 12px;
+  /* reserved for future links or columns; keep it visually subtle */
+  min-height: 10px;
+}
+
+.footer .footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+
+.footer p {
+  margin: 0;
+  color: #CFCFCF;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+.footer .footer-tagline-main {
+  color: #FF8C00;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: right;
+  text-shadow: 0 0 10px rgba(255,140,0,0.08);
+}
+
+@media (max-width: 720px) {
+  .footer .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer .footer-tagline-main {
+    text-align: center;
+    margin-top: 6px;
+  }
 }
 
