@@ -177,7 +177,7 @@ function App() {
         <a href="#quality">Quality</a>
         <a href="#contact">Contact</a>
         <a 
-          href="https://www.bing.com/maps/directions?FORM=HDRSC6&style=r&rtp=%7Epos.22.2878360748291_73.2126235961914_0%2C+Ranmukteshwar+Road%2C+NR+Dutt+Mandir%2C+Pratapnagar%2C+Vadodara%2C+Gujarat+390004_Electromech+Industries_ypid%3AYN4070x14503314820310667931&cp=22.287974%7E73.212560&lvl=17"
+          href="https://www.google.com/maps/place/ELECTROMECH+INDUSTRIES/@22.2858226,73.2085824,17z/data=!3m1!4b1!4m6!3m5!1s0x395fc5f7fd2851d3:0x372597f913749b1a!8m2!3d22.2858226!4d73.2111573!16s%2Fg%2F11q9_phnnk?entry=ttu&g_ep=EgoyMDI1MTEzMC4wIKXMDSoASAFQAw%3D%3D"
           target="_blank"
           rel="noopener noreferrer"
           className="nav-location-link"
