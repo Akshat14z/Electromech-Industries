@@ -1277,6 +1277,53 @@ body {
   color: #FFFFFF;
 }
 
+/* SERVICES PAGE: show service-lines side-by-side and centered */
+#services .contact-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Services: simplified service-lines layout */
+#services .contact-card .service-lines {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 8px 0 0 0;
+  flex-wrap: wrap;
+}
+
+#services .service-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+#services .service-line .service-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-top: 6px;
+}
+
+#services .service-badge {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 640px) {
+  #services .contact-card .service-lines { gap: 20px; }
+  #services .service-badge { width: 54px; height: 54px; }
+  #services .service-line .service-name { font-size: 1.05rem; }
+}
+
 .contact-item {
   display: flex;
   align-items: flex-start;
@@ -1287,6 +1334,36 @@ body {
 .contact-icon {
   font-size: 1.5rem;
   flex-shrink: 0;
+}
+
+/* Contact email/link styling: keep hyperlinks functional but visually subtle */
+.contact-card a {
+  color: #E0E0E0;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255,140,0,0.18);
+  padding-bottom: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.contact-card a:hover,
+.contact-card a:focus {
+  color: #FF8C00;
+  border-color: rgba(255,140,0,0.6);
+  outline: none;
+}
+
+.contact-card a:focus {
+  box-shadow: 0 0 0 4px rgba(255,140,0,0.06);
+  border-radius: 4px;
+}
+
+/* If links are inside paragraphs inside contact-item, inherit spacing */
+.contact-item p a {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-card a { transition: none; }
 }
 
 .contact-item div {

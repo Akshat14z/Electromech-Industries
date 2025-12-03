@@ -187,8 +187,8 @@ function App() {
               <div className="hero-company-card">
                 <h2 className="hero-company-name">Electromech Industries</h2>
                 <p className="hero-company-since">Since 2014</p>
-                <p className="hero-company-desc">Authorized Service Center for Kishor Pumps</p>
-                <p className="hero-company-desc">Authorized Service Center for LUBI Pumps</p>
+                <p className="hero-company-desc">Authorized Service Center for Kishor Pumps and Lubi pumps</p>
+
                 <div className="hero-company-divider"></div>
               </div>
             </div>
@@ -275,17 +275,17 @@ function App() {
             <h2>Our Services</h2>
             <p className="section-intro">We repair and serve following types of Electrical Machines</p>
              <div className="contact-card" style={{marginTop: '28px'}}>
-              <h3>Service Information</h3>
-              <p className="contact-note">
-                <span className="service-line">
-                  <strong>Authorized Service Center for Kishor Pumps</strong>
-                  <img src="kishor.jpg" alt="Kishor Pumps" className="kishor-badge" />
-                </span>
-                <span className="service-line">
-                  <strong>Authorized Service Center for LUBI Pumps</strong>
-                  <img src="lubi.jpg" alt="LUBI Pumps" className="kishor-badge" />
-                </span>
-              </p>
+              <h3>Authorized Service Center For</h3>
+              <div className="service-lines">
+                <div className="service-line">
+                  <img src="kishor.jpg" alt="Kishor Pumps" className="kishor-badge service-badge" />
+                  <div className="service-name">Kishor Pumps</div>
+                </div>
+                <div className="service-line">
+                  <img src="lubi.jpg" alt="LUBI Pumps" className="kishor-badge service-badge" />
+                  <div className="service-name">LUBI Pumps</div>
+                </div>
+              </div>
             </div>  
             <div className="services-grid">
               
@@ -506,21 +506,21 @@ function App() {
                   <span className="contact-icon">👤</span>
                   <div>
                     <strong>MEHUL PATEL</strong>
-                    <p>98 244 38936</p>
+                    <a href="tel:9824438936">98 244 38936</a>
                   </div>
                 </div>
                 <div className="contact-item">
                   <span className="contact-icon">👤</span>
                   <div>
                     <strong>MANUBHAI PATEL</strong>
-                    <p>98 244 38957</p>
+                    <a href="tel:9824438957">98 244 38957</a>
                   </div>
                 </div>
                 <div className="contact-item">
                   <span className="contact-icon">📧</span>
                   <div>
-                    <p>ganeshelectricals@hotmail.com</p>
-                    <p>electromech.vadodara@gmail.com</p>
+                    <a href="mailto:ganeshele.vadodara@gmail.com">ganeshele.vadodara@gmail.com</a><br></br><br></br>
+                    <a href="mailto:electromech.vadodara@gmail.com">electromech.vadodara@gmail.com</a>
                   </div>
                 </div>
                 <div className="contact-item">
