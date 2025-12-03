@@ -379,7 +379,6 @@ function App() {
               <div className="client-item">Enviro control associates p.ltd. - Surat</div>
               <div className="client-item">Indo amines Ltd. - Savali</div>
               <div className="client-item">Voltamp transformers Ltd. - Vadodara/Savli</div>
-              <div className="client-item">Godrej boycee - Por</div>
               <div className="client-item">Flexatherm - Vadodara</div>
               <div className="client-item">Allied Electricals and Eng. Co. - Vadodara</div>
               <div className="client-item">Shah Alloys Ltd. - Ahmedabad</div>
