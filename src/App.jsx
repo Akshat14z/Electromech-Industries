@@ -521,11 +521,11 @@ function App() {
                 <p className="contact-note">
                   <span className="service-line">
                     <strong>Authorized Service Center for Kishor Pumps</strong>
-                    <img src="/public/kishor.jpg" alt="Kishor Pumps" className="kishor-badge" />
+                    <img src="kishor.jpg" alt="Kishor Pumps" className="kishor-badge" />
                   </span>
                   <span className="service-line">
                     <strong>Authorized Service Center for LUBI Pumps</strong>
-                    <img src="/public/lubi.jpg" alt="LUBI Pumps" className="kishor-badge" />
+                    <img src="lubi.jpg" alt="LUBI Pumps" className="kishor-badge" />
                   </span>
                 </p>
               </div>
