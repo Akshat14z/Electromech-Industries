@@ -89,7 +89,7 @@ function App() {
     };
   }, [loading]);
 
-  // Document-level delegated handler for nav anchor clicks (survives react re-renders)
+  // Close mobile menu when a mobile nav link is clicked (let anchors handle scrolling)
   useEffect(() => {
     if (loading) return;
 
@@ -98,26 +98,12 @@ function App() {
       const anchor = el.closest('a');
       if (!anchor) return;
 
-      // only handle anchors inside our nav areas
-      const inNav = anchor.closest('.nav-links') || anchor.closest('.nav-mobile-menu');
-      if (!inNav) return;
+      const inMobileNav = anchor.closest('.nav-mobile-menu');
+      if (!inMobileNav) return;
 
-      const href = anchor.getAttribute('href');
-      if (!href || !href.startsWith('#')) return;
-
-      const id = href.slice(1);
-      const targetElement = document.getElementById(id);
-      if (!targetElement) return;
-
-      e.preventDefault();
+      // let the browser handle scrolling to the hash target,
+      // just make sure we close the hamburger menu
       setMobileMenuOpen(false);
-
-      const navbarEl = document.querySelector('.navbar');
-      const navbarHeight = navbarEl ? navbarEl.offsetHeight : 70;
-      const rect = targetElement.getBoundingClientRect();
-      const top = rect.top + window.pageYOffset - navbarHeight - 6;
-
-      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     };
 
     document.addEventListener('click', handler);
